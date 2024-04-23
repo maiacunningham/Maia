@@ -1,0 +1,39 @@
+---
+title: "514_Step 2"
+output: html_document
+date: "2024-04-23"
+---
+
+```{r}
+rm(list=ls())
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(haven)
+library(dplyr)
+library(tidyverse)
+
+LLCP22 <- read.csv("LLCP22.csv")
+LLCP22v1 <- read.csv("LLCP22v1.csv")
+LLCP22v2 <- read.csv("LLCP22v2.csv")
+
+```
+
+```{r}
+## extract data for each state (FIPS codes) that did ACE module
+
+LLCP <- LLCP22[LLCP22$X_STATE %in% c(5, 12, 19, 32, 38, 41, 46, 51)]
+LLCP$finalwt <- llcp$llcpwt
+
+LLCPv1 <- LLCP22v1[LLCP22v1$X_STATE %in% c(4, 39)]
+LLCPv1$finalwt <- LLCPv1$llcpwtv1
+
+LLCPv2 <- LLCP22v2[LLCP22v2$X_STATE %in% c(34, 40)]
+LLCPv2$finalwt <- LLCPv2$llcpwtv2
+
+#combine datasets
+#ACEs <- rbind(LLCP, LLCPv1, LLCPv2)
+
+```
